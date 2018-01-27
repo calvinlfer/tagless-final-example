@@ -30,3 +30,39 @@ CREATE SCHEMA IF NOT EXISTS example;
 
 The `PostgresApp` will automatically take care of creating the table in the provided
 database and schema. 
+
+## Setup instructions for DynamoDB
+Download [DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
+Start it up using: 
+```bash
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+```
+
+Visit the shell at `localhost:8000/shell` and create the following table:
+```javascript
+const params = {
+    TableName: 'orders_by_id',
+    KeySchema: [
+        {
+            AttributeName: 'id',
+            KeyType: 'HASH'
+        }
+    ],
+    AttributeDefinitions: [
+        {
+            AttributeName: 'id',
+            AttributeType: 'S' // (S | N | B) for string, number, binary
+        }
+    ],
+    ProvisionedThroughput: {
+        ReadCapacityUnits: 10,
+        WriteCapacityUnits: 10
+    }
+};
+dynamodb.createTable(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});
+```
+
+The `DynamoApp` will connect to the local database and create records in that table

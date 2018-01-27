@@ -14,10 +14,12 @@ libraryDependencies ++= {
   val slickV = "3.2.1"
 
   Seq(
-    monix             %% "monix"          % monixV,
-    monix             %% "monix-cats"     % monixV,
-    slick             %% "slick"          % slickV,
-    slick             %% "slick-hikaricp" % slickV,
-    "org.postgresql"  % "postgresql"      % "42.1.4"
+    monix             %% "monix"                    % monixV,
+    monix             %% "monix-cats"               % monixV,
+    slick             %% "slick"                    % slickV,
+    slick             %% "slick-hikaricp"           % slickV,
+    "com.gu"          %% "scanamo"                  % "0.9.5" exclude ("com.amazonaws", "aws-java-sdk-dynamodb"),
+    "com.amazonaws"    % "aws-java-sdk-dynamodb"    % "1.11.269",
+    "org.postgresql"   % "postgresql"               % "42.1.4"
   )
 }
