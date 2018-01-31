@@ -10,9 +10,10 @@ abstract `OrderRepository` makes a requirement that `OrderRepository` needs to h
 sequencing via the `Monad` typeclass constraint (`F[_]: Monad`) since it needs to sequence actions (i.e. in order to 
 perform an update, it needs to sequence `get` and `put`).
 
-There are two interpreters:
+There are three interpreters:
 - An in-memory implementation backed by the `Id` monad
 - A Postgres implementation backed by Slick and Monix `Task`
+- A DynamoDB implementation backed by Scanamo and scala `Future`s
 
 ## Setup instructions for PostgreSQL
 Use `docker-compose up` to bring up a Dockerized PostgreSQL.
