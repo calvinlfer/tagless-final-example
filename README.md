@@ -1,4 +1,5 @@
 # An example service built on Tagless Final
+**[Medium article](https://medium.com/@calvin.l.fer/deferring-commitments-tagless-final-704d768f15cb)**
 
 A small example demonstrating how to make use of *Tagless Final* in order to delay the decision
 of choosing a concrete effect (like `Future` or `Task`) till the end and in order to provide easily
